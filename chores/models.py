@@ -1,11 +1,11 @@
 from django.db import models
 from . import choices
-from uuid import uuid4
+
 
 from django.db.models.base import Model
 
 class Chore(models.Model):
-    id_chore = models.UUIDField(primary_key=True, default=uuid4)
+    id_chore = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
     status = models.CharField(
@@ -16,4 +16,5 @@ class Chore(models.Model):
         default=choices.STATUS_START,
     )
 
-
+    def __str__(self):
+        return self.title
